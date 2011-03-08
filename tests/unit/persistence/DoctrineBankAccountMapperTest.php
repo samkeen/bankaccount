@@ -11,7 +11,7 @@ class DoctrineBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
     protected $mapper;
 
     /**
-     * @covers BankAccountMapper::__construct
+     * @covers DoctrineBankAccountMapper::__construct
      */
     protected function setUp()
     {
@@ -51,7 +51,7 @@ class DoctrineBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
     }
     
     /**
-     * @covers BankAccountMapper::getAllIds
+     * @covers DoctrineBankAccountMapper::getAllIds
      */
     public function testListOfBankAccountIdsCanBeRetrieved()
     {
@@ -59,7 +59,7 @@ class DoctrineBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * @covers BankAccountMapper::findById
+     * @covers DoctrineBankAccountMapper::findById
      */
     public function testBankAccountCanBeFoundById()
     {
@@ -73,7 +73,7 @@ class DoctrineBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * @covers            BankAccountMapper::findById
+     * @covers            DoctrineBankAccountMapper::findById
      * @expectedException OutOfBoundsException
      */
     public function testExceptionIsRaisedWhenBankAccountCannotBeFoundById()
@@ -82,7 +82,7 @@ class DoctrineBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * @covers BankAccountMapper::insert
+     * @covers DoctrineBankAccountMapper::insert
      */
     public function testBankAccountCanBeInserted()
     {
@@ -97,7 +97,7 @@ class DoctrineBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * @covers            BankAccountMapper::insert
+     * @covers            DoctrineBankAccountMapper::insert
      * @covers            MapperException
      * @expectedException MapperException
      */
@@ -110,7 +110,7 @@ class DoctrineBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * @covers BankAccountMapper::update
+     * @covers DoctrineBankAccountMapper::update
      */
     public function testBankAccountCanBeUpdated()
     {
@@ -128,7 +128,7 @@ class DoctrineBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * @covers            BankAccountMapper::update
+     * @covers            DoctrineBankAccountMapper::update
      * @covers            MapperException
      * @expectedException MapperException
      */
@@ -139,7 +139,7 @@ class DoctrineBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * @covers BankAccountMapper::delete
+     * @covers DoctrineBankAccountMapper::delete
      */
     public function testBankAccountCanBeDeleted()
     {
@@ -156,7 +156,7 @@ class DoctrineBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * @covers            BankAccountMapper::delete
+     * @covers            DoctrineBankAccountMapper::delete
      * @covers            MapperException
      * @expectedException MapperException
      */
