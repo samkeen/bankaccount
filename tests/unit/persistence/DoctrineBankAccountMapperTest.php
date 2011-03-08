@@ -15,20 +15,22 @@ class DoctrineBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
      */
     protected function setUp()
     {
-        $this->db     = new PDO('sqlite::memory:');
-        
-        $cache = new \Doctrine\Common\Cache\ArrayCache();
-        $config = new Doctrine\ORM\Configuration();
-        $config->setProxyDir(__DIR__ . '/proxies'); // proxies not used
+        $this->db = new PDO('sqlite::memory:');
+
+        $cache  = new \Doctrine\Common\Cache\ArrayCache;
+        $config = new Doctrine\ORM\Configuration;
+        $config->setProxyDir(__DIR__ . '/proxies');
         $config->setProxyNamespace('BankAccountProxies');
-        $config->setAutoGenerateProxyClasses(true);
+        $config->setAutoGenerateProxyClasses(TRUE);
         $config->setMetadataCacheImpl($cache);
-        $config->setMetadataDriverImpl($config->newDefaultAnnotationDriver(array(
-            __DIR__ . '/../../../src/model'
-        )));
-        
+        $config->setMetadataDriverImpl(
+          $config->newDefaultAnnotationDriver(
+            array(__DIR__ . '/../../../src/model')
+          )
+        );
+
         $em = EntityManager::create(array('pdo' => $this->db), $config);
-        
+
         $this->mapper = new DoctrineBankAccountMapper($em);
 
         $this->db->exec(
@@ -49,7 +51,7 @@ class DoctrineBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
           __DIR__ . '/fixture/bankaccount-seed.xml'
         );
     }
-    
+
     /**
      * @covers DoctrineBankAccountMapper::getAllIds
      */

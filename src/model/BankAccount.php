@@ -9,7 +9,7 @@ class BankAccount
      * @var int
      */
     protected $id;
-    
+
     /** @Column(type="integer") */
     protected $balance = 0;
 
