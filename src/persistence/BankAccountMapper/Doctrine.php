@@ -1,6 +1,6 @@
 <?php
 
-class DoctrineBankAccountMapper implements BankAccountMapper
+class BankAccountMapper_Doctrine implements BankAccountMapper
 {
     /**
      * @var \Doctrine\ORM\EntityManager

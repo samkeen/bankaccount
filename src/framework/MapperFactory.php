@@ -33,7 +33,7 @@ class MapperFactory
                   array('pdo' => $this->pdo), $config
                 );
 
-                return new DoctrineBankAccountMapper($em);
+                return new BankAccountMapper_Doctrine($em);
             }
             break;
 

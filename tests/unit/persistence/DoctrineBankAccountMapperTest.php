@@ -5,19 +5,19 @@ use \Doctrine\ORM\EntityManager;
 /**
  * @large
  */
-class DoctrineBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
+class BankAccountMapper_DoctrineTest extends PHPUnit_Extensions_Database_TestCase
 {
     protected $db;
     protected $mapper;
 
     /**
-     * @covers DoctrineBankAccountMapper::__construct
+     * @covers BankAccountMapper_Doctrine::__construct
      */
     protected function setUp()
     {
         $this->db = new PDO('sqlite::memory:');
 
-        $cache  = new \Doctrine\Common\Cache\ArrayCache;
+        $cache  = new Doctrine\Common\Cache\ArrayCache;
         $config = new Doctrine\ORM\Configuration;
         $config->setProxyDir(__DIR__ . '/proxies');
         $config->setProxyNamespace('BankAccountProxies');
@@ -31,7 +31,7 @@ class DoctrineBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
 
         $em = EntityManager::create(array('pdo' => $this->db), $config);
 
-        $this->mapper = new DoctrineBankAccountMapper($em);
+        $this->mapper = new BankAccountMapper_Doctrine($em);
 
         $this->db->exec(
           file_get_contents(__DIR__ . '/../../../database/bankaccount.sql')
@@ -53,7 +53,7 @@ class DoctrineBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * @covers DoctrineBankAccountMapper::getAllIds
+     * @covers BankAccountMapper_Doctrine::getAllIds
      */
     public function testListOfBankAccountIdsCanBeRetrieved()
     {
@@ -61,7 +61,7 @@ class DoctrineBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * @covers DoctrineBankAccountMapper::findById
+     * @covers BankAccountMapper_Doctrine::findById
      */
     public function testBankAccountCanBeFoundById()
     {
@@ -75,7 +75,7 @@ class DoctrineBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * @covers            DoctrineBankAccountMapper::findById
+     * @covers            BankAccountMapper_Doctrine::findById
      * @expectedException OutOfBoundsException
      */
     public function testExceptionIsRaisedWhenBankAccountCannotBeFoundById()
@@ -84,7 +84,7 @@ class DoctrineBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * @covers DoctrineBankAccountMapper::insert
+     * @covers BankAccountMapper_Doctrine::insert
      */
     public function testBankAccountCanBeInserted()
     {
@@ -99,7 +99,7 @@ class DoctrineBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * @covers            DoctrineBankAccountMapper::insert
+     * @covers            BankAccountMapper_Doctrine::insert
      * @covers            MapperException
      * @expectedException MapperException
      */
@@ -112,7 +112,7 @@ class DoctrineBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * @covers DoctrineBankAccountMapper::update
+     * @covers BankAccountMapper_Doctrine::update
      */
     public function testBankAccountCanBeUpdated()
     {
@@ -130,7 +130,7 @@ class DoctrineBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * @covers            DoctrineBankAccountMapper::update
+     * @covers            BankAccountMapper_Doctrine::update
      * @covers            MapperException
      * @expectedException MapperException
      */
@@ -141,7 +141,7 @@ class DoctrineBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * @covers DoctrineBankAccountMapper::delete
+     * @covers BankAccountMapper_Doctrine::delete
      */
     public function testBankAccountCanBeDeleted()
     {
@@ -158,7 +158,7 @@ class DoctrineBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * @covers            DoctrineBankAccountMapper::delete
+     * @covers            BankAccountMapper_Doctrine::delete
      * @covers            MapperException
      * @expectedException MapperException
      */

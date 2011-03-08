@@ -2,18 +2,18 @@
 /**
  * @large
  */
-class PDOBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
+class BankAccountMapper_PDOTest extends PHPUnit_Extensions_Database_TestCase
 {
     protected $db;
     protected $mapper;
 
     /**
-     * @covers PDOBankAccountMapper::__construct
+     * @covers BankAccountMapper_PDO::__construct
      */
     protected function setUp()
     {
         $this->db     = new PDO('sqlite::memory:');
-        $this->mapper = new PDOBankAccountMapper($this->db);
+        $this->mapper = new BankAccountMapper_PDO($this->db);
 
         $this->db->exec(
           file_get_contents(__DIR__ . '/../../../database/bankaccount.sql')
@@ -35,7 +35,7 @@ class PDOBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * @covers PDOBankAccountMapper::getAllIds
+     * @covers BankAccountMapper_PDO::getAllIds
      */
     public function testListOfBankAccountIdsCanBeRetrieved()
     {
@@ -43,7 +43,7 @@ class PDOBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * @covers PDOBankAccountMapper::findById
+     * @covers BankAccountMapper_PDO::findById
      */
     public function testBankAccountCanBeFoundById()
     {
@@ -57,7 +57,7 @@ class PDOBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * @covers            PDOBankAccountMapper::findById
+     * @covers            BankAccountMapper_PDO::findById
      * @expectedException OutOfBoundsException
      */
     public function testExceptionIsRaisedWhenBankAccountCannotBeFoundById()
@@ -66,7 +66,7 @@ class PDOBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * @covers PDOBankAccountMapper::insert
+     * @covers BankAccountMapper_PDO::insert
      */
     public function testBankAccountCanBeInserted()
     {
@@ -81,7 +81,7 @@ class PDOBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * @covers            PDOBankAccountMapper::insert
+     * @covers            BankAccountMapper_PDO::insert
      * @covers            MapperException
      * @expectedException MapperException
      */
@@ -94,7 +94,7 @@ class PDOBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * @covers PDOBankAccountMapper::update
+     * @covers BankAccountMapper_PDO::update
      */
     public function testBankAccountCanBeUpdated()
     {
@@ -112,7 +112,7 @@ class PDOBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * @covers            PDOBankAccountMapper::update
+     * @covers            BankAccountMapper_PDO::update
      * @covers            MapperException
      * @expectedException MapperException
      */
@@ -123,7 +123,7 @@ class PDOBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * @covers PDOBankAccountMapper::delete
+     * @covers BankAccountMapper_PDO::delete
      */
     public function testBankAccountCanBeDeleted()
     {
@@ -140,7 +140,7 @@ class PDOBankAccountMapperTest extends PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * @covers            PDOBankAccountMapper::delete
+     * @covers            BankAccountMapper_PDO::delete
      * @covers            MapperException
      * @expectedException MapperException
      */

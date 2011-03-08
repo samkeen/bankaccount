@@ -10,8 +10,8 @@ spl_autoload_register(
             'bankaccountlistcontroller' => '/controller/BankAccountListController.php',
             'bankaccountlistview' => '/view/BankAccountListView.php',
             'bankaccountmapper' => '/persistence/BankAccountMapper.php',
-            'pdobankaccountmapper' => '/persistence/PDOBankAccountMapper.php',
-            'doctrinebankaccountmapper' => '/persistence/DoctrineBankAccountMapper.php',
+            'bankaccountmapper_doctrine' => '/persistence/BankAccountMapper/Doctrine.php',
+            'bankaccountmapper_pdo' => '/persistence/BankAccountMapper/PDO.php',
             'bankaccountview' => '/view/BankAccountView.php',
             'controller' => '/framework/Controller.php',
             'controllerexception' => '/framework/ControllerException.php',
@@ -35,16 +35,7 @@ spl_autoload_register(
    }
 );
 
-// this is just to make this work without configuration from either submodule or PEAR
-// dont use that many include paths in production :-)
-set_include_path(
-   __DIR__ . "/vendor/doctrine2/lib/:" .
-   __DIR__ . "/vendor/doctrine2/lib/vendor/doctrine-common/lib:" .
-   __DIR__ . "/vendor/doctrine2/lib/vendor/doctrine-dbal/lib:" .
-   get_include_path()
-);
+require_once 'Doctrine/Common/ClassLoader.php';
 
-require_once "Doctrine/Common/ClassLoader.php";
-
-$loader = new \Doctrine\Common\ClassLoader("Doctrine");
+$loader = new \Doctrine\Common\ClassLoader('Doctrine');
 $loader->register();

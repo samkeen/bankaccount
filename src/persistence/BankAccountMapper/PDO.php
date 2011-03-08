@@ -1,5 +1,5 @@
 <?php
-class PDOBankAccountMapper implements BankAccountMapper
+class BankAccountMapper_PDO implements BankAccountMapper
 {
     protected $db;
     protected $identityMap;
