@@ -13,8 +13,3 @@ spl_autoload_register(
       }
    }
 );
-
-require_once 'Doctrine/Common/ClassLoader.php';
-
-$loader = new \Doctrine\Common\ClassLoader('Doctrine');
-$loader->register();

@@ -21,10 +21,14 @@
   <mkdir dir="${basedir}/build/pdepend"/>
  </target>
 
- <!-- Generate autoloader bootstrap script -->
+ <!-- Generate autoloader scripts -->
  <target name="phpab">
   <exec executable="phpab">
-   <arg line="-o src/autoload.php -t build/autoload.php.in src" />
+   <arg line="-o src/autoload.php -t build/src_autoload.php.in src" />
+  </exec>
+
+  <exec executable="phpab">
+   <arg line="-o tests/autoload.php -t build/tests_autoload.php.in tests" />
   </exec>
  </target>
 
@@ -99,7 +103,8 @@
  <target name="phpdoc">
   <exec executable="phpdoc">
    <arg line="--directory ${source}
-              --target    ${basedir}/build/api" />
+              --target    ${basedir}/build/api
+              --ignore    autoload.php" />
   </exec>
  </target>
 

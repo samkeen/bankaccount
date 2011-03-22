@@ -2,31 +2,15 @@
 /**
  * @small
  */
-class BankAccountControllerTest extends PHPUnit_Framework_TestCase
+class BankAccountControllerTest extends ControllerTestCase
 {
-    protected $controller;
-    protected $mapper;
-    protected $request;
-    protected $response;
-
     /**
      * @covers BankAccountController::__construct
      */
     protected function setUp()
     {
-        $this->mapper = $this->getMockBuilder('BankAccountMapper')
-                             ->disableOriginalConstructor()
-                             ->getMock();
-
+        parent::setUp();
         $this->controller = new BankAccountController($this->mapper);
-
-        $this->request = $this->getMockBuilder('Request')
-                              ->disableOriginalConstructor()
-                              ->getMock();
-
-        $this->response = $this->getMockBuilder('Response')
-                               ->disableOriginalConstructor()
-                               ->getMock();
     }
 
     /**
@@ -43,7 +27,12 @@ class BankAccountControllerTest extends PHPUnit_Framework_TestCase
                      ->method('findById')
                      ->will($this->returnValue(new BankAccount));
 
-        $this->response->expects($this->once())
+        $this->response->expects($this->at(0))
+                       ->method('set')
+                       ->with($this->equalTo('id'),
+                              $this->equalTo(1));
+
+        $this->response->expects($this->at(1))
                        ->method('set')
                        ->with($this->equalTo('balance'),
                               $this->equalTo(0));
