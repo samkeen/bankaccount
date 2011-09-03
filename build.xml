@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project name="BankAccount" default="build">
+ <taskdef uri="antlib:org.sonar.ant" resource="org/sonar/ant/antlib.xml">
+  <classpath path="/usr/share/ant/lib/sonar-ant-task-1.0.jar" />
+ </taskdef>
+
  <target name="build"
    depends="prepare,lint,phpunit,parallelTasks,phpcb"/>
 
@@ -74,6 +78,7 @@
          description="Calculate software metrics using PHP_Depend">
   <exec executable="pdepend">
    <arg value="--jdepend-xml=${basedir}/build/logs/jdepend.xml" />
+   <arg value="--phpunit-xml=${basedir}/build/logs/pdepend.xml" />
    <arg value="--jdepend-chart=${basedir}/build/pdepend/dependencies.svg" />
    <arg value="--overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg" />
    <arg path="${basedir}/src" />
@@ -128,4 +133,50 @@
    <arg path="${basedir}/build/code-browser" />
   </exec>
  </target>
+
+   <target name="sonar">
+    <sonar:sonar workDir="target"
+                 key="YOUR_PROJECT_GROUPID:YOUR_ARTIFACT_ID"
+                 version="YOUR_VERSION"
+                 xmlns:sonar="antlib:org.sonar.ant">
+     <sources>
+      <path location="${basedir}/src"/>
+     </sources>
+
+     <tests>
+      <path location="${basedir}/tests"/>
+     </tests>
+
+     <property key="sonar.dynamicAnalysis" value="true"/>
+     <property key="sonar.language" value="php"/>
+
+     <property key="sonar.phpCodesniffer.shouldRun" value="true"/>
+     <property key="sonar.phpCodesniffer.analyzeOnly" value="true"/>
+     <property key="sonar.phpCodesniffer.reportFileRelativePath" value="../../build/logs"/>
+     <property key="sonar.phpCodesniffer.reportFileName" value="checkstyle.xml"/>
+
+     <property key="sonar.phpcpd.shouldRun" value="true"/>
+     <property key="sonar.phpcpd.analyzeOnly" value="true"/>
+     <property key="sonar.phpcpd.reportFileRelativePath" value="../../build/logs"/>
+     <property key="sonar.phpcpd.reportFileName" value="pmd-cpd.xml"/>
+
+     <property key="sonar.phpDepend.shouldRun" value="true"/>
+     <property key="sonar.phpDepend.analyzeOnly" value="true"/>
+     <property key="sonar.phpDepend.reportFileRelativePath" value="../../build/logs"/>
+     <property key="sonar.phpDepend.reportFileName" value="pdepend.xml"/>
+
+     <property key="sonar.phpPmd.shouldRun" value="true"/>
+     <property key="sonar.phpPmd.analyzeOnly" value="true"/>
+     <property key="sonar.phpPmd.reportFileRelativePath" value="../../build/logs"/>
+     <property key="sonar.phpPmd.reportFileName" value="pmd.xml"/>
+
+     <property key="sonar.phpUnit.coverage.shouldRun" value="true"/>
+     <property key="sonar.phpUnit.analyzeOnly" value="true"/>
+     <property key="sonar.phpUnit.shouldRun" value="true"/>
+     <property key="sonar.phpUnit.analyze.test.directory" value="false"/>
+     <property key="sonar.phpUnit.reportFileRelativePath" value="../../build/logs"/>
+     <property key="sonar.phpUnit.reportFileName" value="junit.xml"/>
+     <property key="sonar.phpUnit.coverageReportFile" value="clover.xml"/>
+    </sonar:sonar>
+   </target>
 </project>
