@@ -5,6 +5,13 @@
   <classpath path="/usr/share/ant/lib/sonar-ant-task-1.0.jar" />
  </taskdef>
 
+ <target name="git-rev-parse" >
+  <exec executable="git" outputproperty="git.revision">
+   <arg value="rev-parse"/>
+   <arg value="HEAD"/>
+  </exec>
+ </target>
+
  <target name="build"
    depends="prepare,lint,phpunit,parallelTasks,phpcb"/>
 
@@ -134,10 +141,10 @@
   </exec>
  </target>
 
-   <target name="sonar">
+   <target name="sonar" depends="git-rev-parse">
     <sonar:sonar workDir="target"
                  key="YOUR_PROJECT_GROUPID:YOUR_ARTIFACT_ID"
-                 version="YOUR_VERSION"
+                 version="${git.revision}"
                  xmlns:sonar="antlib:org.sonar.ant">
      <sources>
       <path location="${basedir}/src"/>
