@@ -141,49 +141,49 @@
   </exec>
  </target>
 
-   <target name="sonar" depends="git-rev-parse">
-    <sonar:sonar workDir="target"
-                 key="YOUR_PROJECT_GROUPID:YOUR_ARTIFACT_ID"
-                 version="${git.revision}"
-                 xmlns:sonar="antlib:org.sonar.ant">
-     <sources>
-      <path location="${basedir}/src"/>
-     </sources>
+ <target name="sonar" depends="git-rev-parse">
+  <sonar:sonar workDir="target"
+               key="YOUR_PROJECT_GROUPID:YOUR_ARTIFACT_ID"
+               version="${git.revision}"
+               xmlns:sonar="antlib:org.sonar.ant">
+   <sources>
+    <path location="${basedir}/src"/>
+   </sources>
 
-     <tests>
-      <path location="${basedir}/tests"/>
-     </tests>
+   <tests>
+    <path location="${basedir}/tests"/>
+   </tests>
 
-     <property key="sonar.dynamicAnalysis" value="true"/>
-     <property key="sonar.language" value="php"/>
+   <property key="sonar.dynamicAnalysis" value="true"/>
+   <property key="sonar.language" value="php"/>
 
-     <property key="sonar.phpCodesniffer.shouldRun" value="true"/>
-     <property key="sonar.phpCodesniffer.analyzeOnly" value="true"/>
-     <property key="sonar.phpCodesniffer.reportFileRelativePath" value="../../build/logs"/>
-     <property key="sonar.phpCodesniffer.reportFileName" value="checkstyle.xml"/>
+   <property key="sonar.phpCodesniffer.shouldRun" value="true"/>
+   <property key="sonar.phpCodesniffer.analyzeOnly" value="true"/>
+   <property key="sonar.phpCodesniffer.reportFileRelativePath" value="../../build/logs"/>
+   <property key="sonar.phpCodesniffer.reportFileName" value="checkstyle.xml"/>
 
-     <property key="sonar.phpcpd.shouldRun" value="true"/>
-     <property key="sonar.phpcpd.analyzeOnly" value="true"/>
-     <property key="sonar.phpcpd.reportFileRelativePath" value="../../build/logs"/>
-     <property key="sonar.phpcpd.reportFileName" value="pmd-cpd.xml"/>
+   <property key="sonar.phpcpd.shouldRun" value="true"/>
+   <property key="sonar.phpcpd.analyzeOnly" value="true"/>
+   <property key="sonar.phpcpd.reportFileRelativePath" value="../../build/logs"/>
+   <property key="sonar.phpcpd.reportFileName" value="pmd-cpd.xml"/>
 
-     <property key="sonar.phpDepend.shouldRun" value="true"/>
-     <property key="sonar.phpDepend.analyzeOnly" value="true"/>
-     <property key="sonar.phpDepend.reportFileRelativePath" value="../../build/logs"/>
-     <property key="sonar.phpDepend.reportFileName" value="pdepend.xml"/>
+   <property key="sonar.phpDepend.shouldRun" value="true"/>
+   <property key="sonar.phpDepend.analyzeOnly" value="true"/>
+   <property key="sonar.phpDepend.reportFileRelativePath" value="../../build/logs"/>
+   <property key="sonar.phpDepend.reportFileName" value="pdepend.xml"/>
 
-     <property key="sonar.phpPmd.shouldRun" value="true"/>
-     <property key="sonar.phpPmd.analyzeOnly" value="true"/>
-     <property key="sonar.phpPmd.reportFileRelativePath" value="../../build/logs"/>
-     <property key="sonar.phpPmd.reportFileName" value="pmd.xml"/>
+   <property key="sonar.phpPmd.shouldRun" value="true"/>
+   <property key="sonar.phpPmd.analyzeOnly" value="true"/>
+   <property key="sonar.phpPmd.reportFileRelativePath" value="../../build/logs"/>
+   <property key="sonar.phpPmd.reportFileName" value="pmd.xml"/>
 
-     <property key="sonar.phpUnit.coverage.shouldRun" value="true"/>
-     <property key="sonar.phpUnit.analyzeOnly" value="true"/>
-     <property key="sonar.phpUnit.shouldRun" value="true"/>
-     <property key="sonar.phpUnit.analyze.test.directory" value="false"/>
-     <property key="sonar.phpUnit.reportFileRelativePath" value="../../build/logs"/>
-     <property key="sonar.phpUnit.reportFileName" value="junit.xml"/>
-     <property key="sonar.phpUnit.coverageReportFile" value="clover.xml"/>
-    </sonar:sonar>
-   </target>
+   <property key="sonar.phpUnit.coverage.shouldRun" value="true"/>
+   <property key="sonar.phpUnit.analyzeOnly" value="true"/>
+   <property key="sonar.phpUnit.shouldRun" value="true"/>
+   <property key="sonar.phpUnit.analyze.test.directory" value="false"/>
+   <property key="sonar.phpUnit.reportFileRelativePath" value="../../build/logs"/>
+   <property key="sonar.phpUnit.reportFileName" value="junit.xml"/>
+   <property key="sonar.phpUnit.coverageReportFile" value="clover.xml"/>
+  </sonar:sonar>
+ </target>
 </project>
