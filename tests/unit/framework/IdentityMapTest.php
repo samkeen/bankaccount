@@ -18,7 +18,8 @@ class IdentityMapTest extends PHPUnit_Framework_TestCase
     {
         $map = new IdentityMap;
         $this->assertAttributeEmpty('idToObject', $map);
-        $this->assertAttributeCount(0, 'objectToId', $map);
+		// this don't exist in PHPUnit 3.5.x
+//        $this->assertAttributeCount(0, 'objectToId', $map);
 
         return $map;
     }
