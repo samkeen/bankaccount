@@ -2,7 +2,7 @@
 
 <project name="BankAccount" default="build">
  <target name="build"
-   depends="prepare,lint,phploc,pdepend,phpmd-ci,phpcs-ci,phpcpd,phpunit,phpcb"/>
+   depends="prepare,lint,phploc,pdepend,phpmd-ci,phpcs-ci,phpcpd,phpunit,phpdoc,phpcb"/>
 
  <target name="build-parallel"
    depends="prepare,lint,tools-parallel,phpunit,phpcb"/>
@@ -139,6 +139,17 @@
   <exec executable="phpunit" failonerror="true"/>
  </target>
 
+ <target name="phpdoc" description="Generate API documentation using PHPDocumentor">
+  <exec executable="phpdoc">
+	<arg value="--directory" />
+	<arg path="${basedir}/src" />
+	<arg value="--ignore" />
+	<arg value="autoload.php" />
+	<arg value="--target" />
+	<arg path="${basedir}/build/api" />
+  </exec>
+ </target>
+	
  <target name="phpcb"
          description="Aggregate tool output with PHP_CodeBrowser">
   <exec executable="phpcb">
